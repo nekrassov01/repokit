@@ -118,14 +118,15 @@ repositories:
       homepage: https://pkg.go.dev/github.com/nekrassov01/table
       topics: [go, table, streaming, ascii, unicode, markdown, backlog, csv]
 
-  - name: logger
+  - name: log
     spec:
-      description: A customizable, minimal, zero-allocation, slog-based logger for Go CLI
-      homepage: https://pkg.go.dev/github.com/nekrassov01/logger
-      topics: [go, log, slog, logger, zero-allocation]
+      description: A fast, zero-allocation slog handler for Go CLIs
+      homepage: https://pkg.go.dev/github.com/nekrassov01/log
+      topics: [go, log, slog, logger, zero-allocation, fast, colorful]
 
   - name: filter
     spec:
-      description: The minimal filter expressions for Go
+      description: A minimal filter expression language for Go
       homepage: https://pkg.go.dev/github.com/nekrassov01/filter
-      topics: [go, dsl, interpreter, filter-expression, no-reflection]
+      topics:
+        [go, dsl, interpreter, filter-expression, no-reflection, fast, unicode]

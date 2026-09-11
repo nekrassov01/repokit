@@ -111,5 +111,10 @@ spec:
       source: ./templates/cli/README.md
       reconcile: create_only
 
-  via: push
+  via: pull_request
   commit_message: "chore: setup config"
+  branch: chore/setup
+  pr_title: "Setup repository defaults"
+  pr_body: |
+    Automated file sync by gh-infra.
+    Updates CI workflows and shared config.
