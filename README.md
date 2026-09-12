@@ -6,7 +6,7 @@ remote environments.
 | Management area | Tool | Path |
 | --- | --- | --- |
 | Remote GitHub settings | [gh-infra](https://github.com/babarot/gh-infra) | [`./infra.yaml`](./infra.yaml) |
-| Local Go repository templates | [gonew](https://pkg.go.dev/golang.org/x/tools/cmd/gonew) | [`./templates/cli`](./templates/cli), [`./templates/pkg`](./templates/pkg) |
+| Local Go repository templates | [gonew](https://pkg.go.dev/golang.org/x/tools/cmd/gonew) | [`./templates/`](./templates) |
 
 ## Requirements
 
@@ -72,3 +72,11 @@ For a CLI repository, also set the Homebrew description in `.goreleaser.yml`.
     └── pkg
         └── go.mod
 ```
+
+## Author
+
+[nekrassov01](https://github.com/nekrassov01)
+
+## License
+
+[MIT](https://github.com/nekrassov01/repokit/blob/main/LICENSE)
