@@ -14,6 +14,15 @@
     "MD034": false,
     "MD041": false
   },
+  "go.lintTool": "golangci-lint",
+  "go.lintFlags": ["--fast"],
+  "[go][go.mod][makefile]": {
+    "editor.insertSpaces": false,
+    "editor.tabSize": 8
+  },
+  "[go]": {
+    "editor.defaultFormatter": "golang.go"
+  },
   "[markdown]": {
     "editor.defaultFormatter": "yzhang.markdown-all-in-one",
     "editor.wordWrap": "off",

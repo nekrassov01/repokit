@@ -1,11 +1,11 @@
-NAME := <% .Repo.Name %>
-CMD_PATH := ./cmd/<% .Vars.CommandName %>/
+NAME := DUMMY
+CMD_PATH := ./cmd/DUMMY/
 
 GOBIN ?= $(shell go env GOPATH)/bin
 
 VERSION := $$(make version)
 REVISION := $$(make revision)
-LDFLAGS := "-s -w -X github.com/<% .Repo.FullName %>.version=$(VERSION) -X github.com/<% .Repo.FullName %>.revision=$(REVISION)"
+LDFLAGS := "-s -w -X github.com/nekrassov01/DUMMY.version=$(VERSION) -X github.com/nekrassov01/DUMMY.revision=$(REVISION)"
 
 HAS_LINT := $(shell command -v $(GOBIN)/golangci-lint 2> /dev/null)
 HAS_VULN := $(shell command -v $(GOBIN)/govulncheck 2> /dev/null)

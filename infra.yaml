@@ -46,9 +46,9 @@ defaults:
       can_approve_pull_requests: true
 
 repositories:
-  - name: github-config
+  - name: repokit
     spec:
-      description: GitHub repository management with babarot/gh-infra
+      description: Local and remote repository management for development
 
   # --------
   #  tools

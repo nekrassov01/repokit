@@ -1,17 +1,17 @@
 version: 2
-project_name: <% .Repo.Name %>
+project_name: DUMMY
 env:
   - GO111MODULE=on
 before:
   hooks:
     - go mod tidy
 builds:
-  - main: ./cmd/<% .Vars.CommandName %>/
-    binary: <% .Vars.CommandName %>
+  - main: ./cmd/DUMMY/
+    binary: DUMMY
     ldflags:
       - -s -w
-      - -X github.com/<% .Repo.FullName %>.version={{ .Version }}
-      - -X github.com/<% .Repo.FullName %>.revision={{ .ShortCommit }}
+      - -X github.com/nekrassov01/DUMMY.version={{ .Version }}
+      - -X github.com/nekrassov01/DUMMY.revision={{ .ShortCommit }}
     env:
       - CGO_ENABLED=0
     goos:
@@ -46,8 +46,8 @@ brews:
       token: "{{ .Env.HOMEBREW_TAP_GITHUB_TOKEN }}"
       branch: main
     directory: Formula
-    homepage: "https://github.com/<% .Repo.FullName %>"
-    description: <% .Vars.Description %>
+    homepage: "https://github.com/nekrassov01/DUMMY"
+    description:
     license: "MIT"
 release:
   use_existing_draft: true

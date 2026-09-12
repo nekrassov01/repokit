@@ -38,6 +38,4 @@ go.work.sum
 dist/
 *.pem
 *.prof
-/<% .Repo.Name %>
-<% .Repo.Name %>.html
 

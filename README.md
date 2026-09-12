@@ -1,70 +1,74 @@
-# GitHub Config
+# RepoKit
 
-GitHub repository management with [babarot/gh-infra](https://github.com/babarot/gh-infra).
+This repository manages repositories for development across both local and
+remote environments.
 
-## Usage
+| Management area | Tool | Path |
+| --- | --- | --- |
+| Remote GitHub settings | [gh-infra](https://github.com/babarot/gh-infra) | [`./infra.yaml`](./infra.yaml) |
+| Local Go repository templates | [gonew](https://pkg.go.dev/golang.org/x/tools/cmd/gonew) | [`./templates/cli`](./templates/cli), [`./templates/pkg`](./templates/pkg) |
 
-Initialize the Go CLI repositories with flat structure.
+## Requirements
 
-```sh
-cd src/go/
-gh infra plan repos.yaml files.cli.yaml
-gh infra apply repos.yaml files.cli.yaml
-```
-
-Initialize the Go package repositories with flat structure.
+Install gh-infra as a GitHub CLI extension.
 
 ```sh
-cd src/go/
-gh infra plan repos.yaml files.pkg.yaml
-gh infra apply repos.yaml files.pkg.yaml
+gh extension install babarot/gh-infra
 ```
 
-## Worktree
+Install gonew.
 
-The directory tree has been optimized as follows:
+```sh
+go install golang.org/x/tools/cmd/gonew@latest
+```
+
+## GitHub repository settings
+
+Repository settings are defined in `infra.yaml`. Validate the manifest and
+review the planned changes before applying them.
+
+```sh
+gh infra validate infra.yaml
+gh infra plan infra.yaml
+gh infra apply infra.yaml
+```
+
+Set `HOMEBREW_TAP_GITHUB_TOKEN` before applying changes that manage the
+corresponding repository secret.
+
+## Go repository templates
+
+Create a CLI repository from `templates/cli`.
+
+```sh
+gonew github.com/nekrassov01/repokit/templates/cli \
+  github.com/nekrassov01/my-cli
+```
+
+Create a package repository from `templates/pkg`.
+
+```sh
+gonew github.com/nekrassov01/repokit/templates/pkg \
+  github.com/nekrassov01/my-package
+```
+
+gonew rewrites the module path in `go.mod` and Go source files. It does not
+rewrite other files. After creating a repository, replace `DUMMY` with the
+repository or command name in these files:
+
+- CLI: `README.md`, `Makefile`, and `.goreleaser.yml`
+- Package: `README.md`
+
+For a CLI repository, also set the Homebrew description in `.goreleaser.yml`.
+
+## Structure
 
 ```text
 .
-└── go
-    ├── files.cli.yaml
-    ├── files.pkg.yaml
-    ├── repos.yaml
-    └── templates
-        ├── base
-        │   ├── .editorconfig
-        │   ├── .gitattributes
-        │   ├── .gitignore
-        │   ├── .golangci.yml
-        │   ├── .tagpr
-        │   ├── go.mod
-        │   ├── LICENSE
-        │   └── .vscode
-        │       ├── extensions.json
-        │       └── settings.json
-        ├── cli
-        │   ├── .goreleaser.yml
-        │   ├── .octocov.yml
-        │   ├── Makefile
-        │   ├── README.md
-        │   └── .github
-        │       ├── CODEOWNERS
-        │       ├── dependabot.yml
-        │       ├── release.yml
-        │       └── workflows
-        │           ├── ci.yml
-        │           └── release.yml
-        └── pkg
-            ├── .octocov.yml
-            ├── Makefile
-            ├── README.md
-            ├── .github
-            │   ├── CODEOWNERS
-            │   ├── dependabot.yml
-            │   ├── release.yml
-            │   └── workflows
-            │       ├── ci.yml
-            │       └── release.yml
-            └── benchmarks
-                └── Makefile
+├── infra.yaml
+└── templates
+    ├── cli
+    │   └── go.mod
+    └── pkg
+        └── go.mod
 ```
